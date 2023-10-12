@@ -1,0 +1,48 @@
+let displayValue = "0";
+let currentOperator = "";
+let firstOperand = 0;
+
+function updateDisplay() {
+    document.getElementById("result").value = displayValue;
+}
+
+function appendToDisplay(value) {
+    if (displayValue === "0" && value !== ".") {
+        displayValue = value;
+    } else {
+        displayValue += value;
+    }
+    updateDisplay();
+}
+
+function clearDisplay() {
+    displayValue = "0";
+    updateDisplay();
+}
+
+function calculateResult() {
+    const secondOperand = parseFloat(displayValue);
+
+    switch (currentOperator) {
+        case "+":
+            displayValue = (firstOperand + secondOperand).toString();
+            break;
+        case "-":
+            displayValue = (firstOperand - secondOperand).toString();
+            break;
+        case "*":
+            displayValue = (firstOperand * secondOperand).toString();
+            break;
+        case "/":
+            displayValue = (firstOperand / secondOperand).toString();
+            break;
+    }
+
+    currentOperator = "";
+    firstOperand = 0;
+    updateDisplay();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    updateDisplay();
+});
